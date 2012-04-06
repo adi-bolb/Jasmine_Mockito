@@ -3,22 +3,32 @@
 <html>
 <head>
   <title>Jasmine Spec Runner</title>
-
   <link rel="shortcut icon" type="image/png" href="lib/jasmine-1.2.0.rc3/jasmine_favicon.png">
   <link rel="stylesheet" type="text/css" href="lib/jasmine-1.2.0.rc3/jasmine.css">
   <script type="text/javascript" src="lib/jasmine-1.2.0.rc3/jasmine.js"></script>
   <script type="text/javascript" src="lib/jasmine-1.2.0.rc3/jasmine-html.js"></script>
 
-  <!-- include source files here... -->
-  <script type="text/javascript" src="spec/SpecHelper.js"></script>
-  <script type="text/javascript" src="spec/PlayerSpec.js"></script>
+  <script type="text/javascript" src="lib/jshamcrest/jshamcrest.js"></script>
+  <script type="text/javascript" src="lib/jshamcrest/core.js"></script>
+  <script type="text/javascript" src="lib/jshamcrest/collection.js"></script>
+  <script type="text/javascript" src="lib/jshamcrest/integration.js"></script>
+  <script type="text/javascript" src="lib/jshamcrest/number.js"></script>
+  <script type="text/javascript" src="lib/jshamcrest/object.js"></script>
+  <script type="text/javascript" src="lib/jshamcrest/operator.js"></script>
+  <script type="text/javascript" src="lib/jshamcrest/text.js"></script>
 
+  <script type="text/javascript" src="lib/jsmockito-1.0.4.js"></script>
+
+  <!-- include source files here... -->
+  <script type="text/javascript" src="spec/ComputerSpec.js"></script>
   <!-- include spec files here... -->
-  <script type="text/javascript" src="src/Player.js"></script>
-  <script type="text/javascript" src="src/Song.js"></script>
+  <script type="text/javascript" src="src/Monitor.js"></script>
+  <script type="text/javascript" src="src/Computer.js"></script>
 
   <script type="text/javascript">
     (function() {
+      integrateWithJsMockito();
+      
       var jasmineEnv = jasmine.getEnv();
       jasmineEnv.updateInterval = 1000;
 
@@ -36,18 +46,21 @@
         if (currentWindowOnload) {
           currentWindowOnload();
         }
-        execJasmine();
+        execJasmine();        
       };
 
       function execJasmine() {
         jasmineEnv.execute();
       }
 
+      function integrateWithJsMockito(){
+        JsHamcrest.Integration.copyMembers(window);
+        JsMockito.Integration.importTo(window);
+      }
+
     })();
   </script>
-
 </head>
-
 <body>
 </body>
 </html>
